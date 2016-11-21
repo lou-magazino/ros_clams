@@ -1,4 +1,4 @@
-#include <stream_sequence/stream_sequence_base.h>
+#include <core/stream_sequence/stream_sequence_base.h>
 #include <iomanip>
 #include <boost/program_options.hpp>
 #include <boost/filesystem.hpp>

@@ -187,6 +187,9 @@ target_link_libraries(stream_sequence
   eigen_extensions
 )
 
+add_executable(sseq_to_freiburg src/core/stream_sequence/prog/sseq_to_freiburg.cpp)
+target_link_libraries(sseq_to_freiburg stream_sequence boost_program_options) # boost not fully configured by cmake
+
 #core/clams
 add_library(clams
   src/core/clams/lib/discrete_depth_distortion_model.cpp
@@ -238,8 +241,8 @@ target_link_libraries(generate_map ${Boost_LIBRARIES} clams boost_program_option
 
 ## Mark executables and/or libraries for installation
 # exe
-install(TARGETS test_gzip test_gunzip cat convert inspect calibrate visualize_model convert_trajectory visualize_trajectory generate_map
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+install(TARGETS test_gzip test_gunzip cat convert inspect calibrate visualize_model
+                convert_trajectory visualize_trajectory generate_map sseq_to_freiburg
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 # lib
