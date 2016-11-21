@@ -251,7 +251,7 @@ install(TARGETS gzstream bag_of_tricks eigen_extensions serializable timer strea
 install(FILES
   scripts/slam
   scripts/visualize_trajectories
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 # install(DIRECTORY include/${PROJECT_NAME}/
 #   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
