@@ -239,13 +239,12 @@ target_link_libraries(generate_map ${Boost_LIBRARIES} clams boost_program_option
 ## Mark executables and/or libraries for installation
 # exe
 install(TARGETS test_gzip test_gunzip cat convert inspect calibrate visualize_model convert_trajectory visualize_trajectory generate_map
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 # lib
 install(TARGETS gzstream bag_of_tricks eigen_extensions serializable timer stream_sequence clams
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
 
 ## Mark cpp header files for installation
