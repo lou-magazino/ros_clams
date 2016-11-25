@@ -40,20 +40,49 @@ int main(int argc, char** argv)
     return 1;
   }
 
-  StreamSequenceBase::Ptr sseq = StreamSequenceBase::initializeFromDirectory(sseq_path);
+  // StreamSequenceBase::Ptr sseq = StreamSequenceBase::initializeFromDirectory(sseq_path);
   Trajectory traj;
-  traj.resize(sseq->size());
+  // traj.resize(sseq->size());
+  if(!bfs::is_regular_file(bfs::path(sseq_path + "/assoc.txt")))
+  {
+    ROS_ERROR("assoc.txt not found");
+    return 1;
+  }
   
   ifstream frei;
+  ifstream assoc;
   frei.open(src.c_str());
+  assoc.open((sseq_path + "/assoc.txt").c_str());
+  // read all timestamp from assoc
+  vector<double> timestamps;
+  while(true) {
+    double t1, t2;
+    std::string f1, f2;
+    frei >> t1 >> f1 >> t2 >> f2;
+    if(frei.eof())
+      break;
+    cout << t1 << f1 << t2 << f2 << "\n";
+    timestamps.push_back(t1);
+  }
+  assoc.close();
   while(true) {
     double timestamp, tx, ty, tz, qx, qy, qz, qw;
     frei >> timestamp >> tx >> ty >> tz >> qx >> qy >> qz >> qw;
     if(frei.eof())
       break;
     
-    double dt;
-    size_t idx = sseq->seek(timestamp, &dt);
+    double dt = timestamp;
+    // size_t idx = sseq->seek(timestamp, &dt);
+    size_t idx = 0;
+    for(size_t i = 0; i < timestamps.size(); ++i)
+    {
+      if(fabs(timestamps.at(i) - timestamp) < dt)
+      {
+	idx = i;
+	dt = fabs(timestamps.at(i) - timestamp);
+      }
+    }
+    
     ROS_ASSERT(dt < 1e-6);
 
     Quaternion<double> rotation(qw, qx, qy, qz);

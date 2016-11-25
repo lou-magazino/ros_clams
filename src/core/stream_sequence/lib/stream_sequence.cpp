@@ -76,7 +76,9 @@ namespace clams
 
     // -- Load timestamps.
     timestamps_.resize(clk_names_.size());
+      ROS_ERROR("%lu", clk_names_.size());
     for(size_t i = 0; i < clk_names_.size(); ++i) {
+      ROS_ERROR("%s", (root_path_ + "/" + clk_names_[i]).c_str());
       ifstream fs((root_path_ + "/" + clk_names_[i]).c_str());
       ROS_ASSERT(fs.is_open());
       fs >> timestamps_[i];

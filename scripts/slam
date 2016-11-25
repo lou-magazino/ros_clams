@@ -22,7 +22,8 @@ do
     mkdir -p $fdir
     rm -rf $fdir/*
     fseq=$fdir/$(basename $seq)
-    rosrun ros_clams sseq_to_freiburg $seq $fseq
+    cp -rf $seq $fseq
+    # rosrun ros_clams sseq_to_freiburg $seq $fseq
     
     # -- Run dvo_public.
     cd $fseq
