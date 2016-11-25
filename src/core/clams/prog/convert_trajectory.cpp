@@ -58,13 +58,14 @@ int main(int argc, char** argv)
   while(true) {
     double t1, t2;
     std::string f1, f2;
-    frei >> t1 >> f1 >> t2 >> f2;
-    if(frei.eof())
+    assoc >> t1 >> f1 >> t2 >> f2;
+    if(assoc.eof())
       break;
-    cout << t1 << f1 << t2 << f2 << "\n";
+    // cout << t1 << f1 << t2 << f2 << "\n";
     timestamps.push_back(t1);
   }
   assoc.close();
+  traj.resize(timestamps.size());
   while(true) {
     double timestamp, tx, ty, tz, qx, qy, qz, qw;
     frei >> timestamp >> tx >> ty >> tz >> qx >> qy >> qz >> qw;
