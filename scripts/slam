@@ -7,8 +7,14 @@ then
     exit
 fi
 
+if [ ! -d slam_results ]
+then
+    mkdir slam_results
+fi
+
 for seq in sequences/*
 do
+    echo $seq
     if [ -e slam_results/$(basename $seq)/trajectory ]
     then
         echo Trajectory for $(basename $seq) already exists.  Skipping.
@@ -22,6 +28,7 @@ do
     mkdir -p $fdir
     rm -rf $fdir/*
     fseq=$fdir/$(basename $seq)
+    echo Converting $seq to $fseq
     rosrun ros_clams sseq_to_freiburg $seq $fseq
     
     # -- Run dvo_public.

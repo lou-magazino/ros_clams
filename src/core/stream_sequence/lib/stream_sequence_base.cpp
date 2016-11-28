@@ -18,7 +18,6 @@ clams::StreamSequenceBase::Ptr clams::StreamSequenceBase::initializeFromDirector
 
 void clams::StreamSequenceBase::load (const std::string &root_path)
 {
-  
    loadImpl (root_path);
    root_path_ = root_path;
 }

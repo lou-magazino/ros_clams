@@ -39,6 +39,7 @@ int main(int argc, char** argv)
 
   ROS_ASSERT(!bfs::exists(dst));
   StreamSequenceBase::Ptr sseq = StreamSequenceBase::initializeFromDirectory(src);
+  ROS_INFO("size sseq %lu", sseq->size());
   bfs::create_directory(dst);
   bfs::create_directory(dst + "/depth");
   bfs::create_directory(dst + "/rgb");

@@ -55,9 +55,8 @@ namespace clams
     bfs::recursive_directory_iterator it(root_path_), eod;
     BOOST_FOREACH(const bfs::path& p, make_pair(it, eod)) {
       ROS_ASSERT(is_regular_file(p));
-      if(p.leaf().string().substr(0, 3).compare("img") == 0 &&
-         (bfs::extension(p).compare(".ppm") == 0 ||
-          bfs::extension(p).compare(".png") == 0))
+      if(bfs::extension(p).compare(".ppm") == 0 ||
+         bfs::extension(p).compare(".png") == 0)
       {
         img_names_.push_back(p.leaf().string());
       }
